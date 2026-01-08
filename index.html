@@ -4,28 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Paystub Generator</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      /* Print specific styles to ensure background colors render */
-      @media print {
-        -webkit-print-color-adjust: exact; 
-        print-color-adjust: exact;
-      }
-      /* Custom scrollbar for the form */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #cbd5e1; 
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8; 
-      }
-    </style>
+    <link rel="stylesheet" href="/styles.css" />
   <script type="importmap">
 {
   "imports": {
@@ -42,5 +21,6 @@
 </head>
   <body class="bg-gray-100">
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
