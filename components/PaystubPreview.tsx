@@ -29,47 +29,76 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
     <div className="flex justify-center p-8 bg-gray-200 rounded-xl overflow-auto">
       <div 
         id={id} 
-        className="bg-white text-black shadow-2xl relative flex flex-col"
+        className="bg-white text-black shadow-2xl relative"
         style={{ 
           width: '816px',       // 8.5 inches
           minHeight: '1056px',  // 11 inches
           fontFamily: '"Times New Roman", Times, serif',
           padding: '48px 64px', // Standard margins
+          position: 'relative',
         }}
       >
         {/* Watermark - More prominent and visible */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
-             <div className="transform -rotate-45 text-gray-300/30 text-[7rem] font-bold uppercase tracking-widest whitespace-nowrap select-none leading-none text-center">
+        <div 
+          className="absolute pointer-events-none overflow-hidden"
+          style={{
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+             <div 
+               className="transform -rotate-45 text-gray-300/30 font-bold uppercase tracking-widest whitespace-nowrap select-none leading-none text-center"
+               style={{ fontSize: '7rem' }}
+             >
                 PAY STATEMENT<br/>
                 <span className="text-4xl mt-4 block tracking-normal">(NOT A CHECK)</span>
             </div>
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 flex-grow flex flex-col h-full">
+        <div 
+          className="flex-grow flex flex-col h-full"
+          style={{ 
+            position: 'relative', 
+            zIndex: 1 
+          }}
+        >
             
             {/* Header Section */}
-            <div className="flex justify-between items-start mb-6">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
                 {/* Void Pantograph Box */}
-                <div className="w-[50%] border border-gray-300 p-2 relative bg-gray-50/50">
+                <div style={{ width: '50%', border: '1px solid #d1d5db', padding: '8px', position: 'relative', backgroundColor: 'rgba(249, 250, 251, 0.5)' }}>
                     <div 
-                        className="absolute inset-0 z-0 opacity-20 pointer-events-none"
                         style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            zIndex: 0,
+                            opacity: 0.2,
+                            pointerEvents: 'none',
                             backgroundImage: 'radial-gradient(#000 0.5px, transparent 0.5px)',
                             backgroundSize: '3px 3px'
                         }}
                     ></div>
                     
-                    <div className="relative z-10 text-[10px] text-gray-600 font-sans leading-tight">
-                        <div className="font-mono text-black font-bold mb-1">00457</div>
-                        <div className="grid grid-cols-[30px_40px_40px_40px_1fr] gap-2 font-bold uppercase tracking-tight text-[8px] mb-0.5">
+                    <div style={{ position: 'relative', zIndex: 1, fontSize: '10px', color: '#4b5563', fontFamily: 'sans-serif', lineHeight: '1.25' }}>
+                        <div style={{ fontFamily: 'monospace', color: '#000', fontWeight: 'bold', marginBottom: '4px' }}>00457</div>
+                        <div style={{ display: 'grid', gridTemplateColumns: '30px 40px 40px 40px 1fr', gap: '8px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.025em', fontSize: '8px', marginBottom: '2px' }}>
                             <div>Co.</div>
                             <div>File</div>
                             <div>Dept.</div>
                             <div>Clock</div>
                             <div>Vchr. No.</div>
                         </div>
-                         <div className="grid grid-cols-[30px_40px_40px_40px_1fr] gap-2 font-mono text-black font-medium">
+                         <div style={{ display: 'grid', gridTemplateColumns: '30px 40px 40px 40px 1fr', gap: '8px', fontFamily: 'monospace', color: '#000', fontWeight: '500' }}>
                             <div>X93</div>
                             <div>529659</div>
                             <div>035300</div>
@@ -80,101 +109,99 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
                 </div>
 
                 {/* Check Details */}
-                <div className="flex flex-col items-end text-[11px] font-medium pt-1">
-                     <div className="grid grid-cols-[120px_100px] gap-y-1 text-right">
-                        <div className="text-gray-600">Check Number</div>
-                        <div className="font-bold text-black">{calculated.checkNumber}</div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', fontSize: '11px', fontWeight: '500', paddingTop: '4px' }}>
+                     <div style={{ display: 'grid', gridTemplateColumns: '120px 100px', rowGap: '4px', textAlign: 'right' }}>
+                        <div style={{ color: '#4b5563' }}>Check Number</div>
+                        <div style={{ fontWeight: 'bold', color: '#000' }}>{calculated.checkNumber}</div>
                         
-                        <div className="text-gray-600">Batch Number</div>
-                        <div className="text-black">S00661484</div>
+                        <div style={{ color: '#4b5563' }}>Batch Number</div>
+                        <div style={{ color: '#000' }}>S00661484</div>
                         
-                        <div className="text-gray-600">Pay Period End Date</div>
-                        <div className="text-black">{calculated.periodEndDate}</div>
+                        <div style={{ color: '#4b5563' }}>Pay Period End Date</div>
+                        <div style={{ color: '#000' }}>{calculated.periodEndDate}</div>
                         
-                        <div className="text-gray-600">Check Date</div>
-                        <div className="text-black">{calculated.payDate}</div>
+                        <div style={{ color: '#4b5563' }}>Check Date</div>
+                        <div style={{ color: '#000' }}>{calculated.payDate}</div>
                      </div>
                 </div>
             </div>
 
             {/* Title */}
-            <div className="flex justify-between items-end mb-8 border-b-2 border-black pb-1">
-                <h1 className="text-3xl font-medium text-black tracking-tight">Statement of Earnings and Deductions</h1>
-                <div className="mb-1">
-                    <span className="font-sans font-black italic text-2xl tracking-tighter text-gray-800" style={{ transform: 'skewX(-10deg)' }}>ADP</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px', borderBottom: '2px solid #000', paddingBottom: '4px' }}>
+                <h1 style={{ fontSize: '30px', fontWeight: '500', color: '#000', letterSpacing: '-0.025em', marginBottom: '-2px', lineHeight: '1' }}>Statement of Earnings and Deductions</h1>
+                <div style={{ marginBottom: '4px' }}>
+                    <span style={{ fontFamily: 'sans-serif', fontWeight: '900', fontStyle: 'italic', fontSize: '24px', letterSpacing: '-0.05em', color: '#1f2937', transform: 'skewX(-10deg)', display: 'inline-block' }}>ADP</span>
                 </div>
             </div>
 
             {/* Employee/Employer Info */}
-             <div className="grid grid-cols-12 gap-8 mb-8">
-                 <div className="col-span-5">
-                     <div className="text-[11px] mb-6">Employee Id: <span className="font-bold">{data.employeeId}</span></div>
+             <div style={{ display: 'grid', gridTemplateColumns: '5fr 7fr', gap: '32px', marginBottom: '32px' }}>
+                 <div>
+                     <div style={{ fontSize: '11px', marginBottom: '24px' }}>Employee Id: <span style={{ fontWeight: 'bold' }}>{data.employeeId}</span></div>
                      
-                     <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-1 text-[10px] border-b border-black pb-1 mb-1 font-bold">
-                             <div className="whitespace-nowrap">Marital Status/Exemptions</div>
-                             <div className="text-center"></div>
-                             <div className="text-center"></div>
-                             <div className="text-center">Amounts</div>
+                     <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '4px', fontSize: '10px', borderBottom: '1px solid #000', paddingBottom: '4px', marginBottom: '4px', fontWeight: 'bold' }}>
+                             <div style={{ whiteSpace: 'nowrap' }}>Marital Status/Exemptions</div>
+                             <div style={{ textAlign: 'center' }}></div>
+                             <div style={{ textAlign: 'center' }}></div>
+                             <div style={{ textAlign: 'center' }}>Amounts</div>
                      </div>
-                     <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-1 text-[10px]">
+                     <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '4px', fontSize: '10px' }}>
                              <div>Federal</div>
-                             <div className="text-center">{data.maritalStatus.charAt(0).toUpperCase()}</div>
-                             <div className="text-center">{data.exemptions.toString().padStart(2, '0')}</div>
-                             <div className="text-center">0</div>
+                             <div style={{ textAlign: 'center' }}>{data.maritalStatus.charAt(0).toUpperCase()}</div>
+                             <div style={{ textAlign: 'center' }}>{data.exemptions.toString().padStart(2, '0')}</div>
+                             <div style={{ textAlign: 'center' }}>0</div>
                      </div>
-                      <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-1 text-[10px]">
+                      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '4px', fontSize: '10px' }}>
                              <div>Work State TX</div>
-                             <div className="text-center">N/A</div>
-                             <div className="text-center">N/A</div>
-                             <div className="text-center">0</div>
+                             <div style={{ textAlign: 'center' }}>N/A</div>
+                             <div style={{ textAlign: 'center' }}>N/A</div>
+                             <div style={{ textAlign: 'center' }}>0</div>
                      </div>
-                     <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-1 text-[10px]">
+                     <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '4px', fontSize: '10px' }}>
                              <div>Res State TX</div>
-                             <div className="text-center">N/A</div>
-                             <div className="text-center">N/A</div>
-                             <div className="text-center">0</div>
+                             <div style={{ textAlign: 'center' }}>N/A</div>
+                             <div style={{ textAlign: 'center' }}>N/A</div>
+                             <div style={{ textAlign: 'center' }}>0</div>
                      </div>
                  </div>
 
-                 {/* Removed pl-20 to allow full right alignment */}
-                 <div className="col-span-7 flex flex-col items-end pt-2 text-right">
-                     <div className="text-[12px] font-bold uppercase tracking-wide">{data.employeeName}</div>
-                     <div className="text-[12px] whitespace-pre-line mb-2 uppercase leading-tight">{data.employeeAddress}</div>
+                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', paddingTop: '8px', textAlign: 'right' }}>
+                     <div style={{ fontSize: '12px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.025em' }}>{data.employeeName}</div>
+                     <div style={{ fontSize: '12px', whiteSpace: 'pre-line', marginBottom: '8px', textTransform: 'uppercase', lineHeight: '1.25' }}>{data.employeeAddress}</div>
                  </div>
              </div>
 
              {/* Tables Section */}
-            <div className="flex flex-col gap-6">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                 
                 {/* Earnings & Taxes */}
-                <div className="grid grid-cols-12 gap-4">
+                <div style={{ display: 'grid', gridTemplateColumns: '8fr 4fr', gap: '16px' }}>
                     {/* Earnings */}
-                    <div className="col-span-8">
-                         <div className="bg-gray-100 p-1 mb-2 text-[10px] flex justify-between font-bold border-t border-b border-gray-300">
+                    <div>
+                         <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', borderTop: '1px solid #d1d5db', borderBottom: '1px solid #d1d5db' }}>
                              <span>Payments This Period</span>
-                             <div className="flex gap-4">
-                                 <span className="font-normal text-[9px] mr-2">Reg. Rate {calculated.rate.toFixed(2)}</span>
-                                 <span className="font-normal text-[9px]">Ovt Rate {(calculated.rate * 1.5).toFixed(2)}</span>
+                             <div style={{ display: 'flex', gap: '16px' }}>
+                                 <span style={{ fontWeight: 'normal', fontSize: '9px', marginRight: '8px' }}>Reg. Rate {calculated.rate.toFixed(2)}</span>
+                                 <span style={{ fontWeight: 'normal', fontSize: '9px' }}>Ovt Rate {(calculated.rate * 1.5).toFixed(2)}</span>
                              </div>
                          </div>
-                         <div className="space-y-1 text-[10px] px-2 font-medium">
+                         <div style={{ fontSize: '10px', paddingLeft: '8px', paddingRight: '8px', fontWeight: '500' }}>
                              {calculated.earnings.map((earn, i) => (
-                                <div key={i} className="flex justify-between">
+                                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
                                     <span>{earn.name}</span>
-                                    <div className="flex gap-8">
-                                        <span className="w-16 text-right">{formatNumber(earn.current)}</span>
-                                        {/* Optional: Show hours if non-zero */}
+                                    <div style={{ display: 'flex', gap: '32px' }}>
+                                        <span style={{ width: '64px', textAlign: 'right' }}>{formatNumber(earn.current)}</span>
                                     </div>
                                 </div>
                              ))}
                              
-                             <div className="border-t border-gray-300 my-2"></div>
+                             <div style={{ borderTop: '1px solid #d1d5db', marginTop: '8px', marginBottom: '8px' }}></div>
                              
-                              <div className="flex justify-between mt-2">
+                              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '8px' }}>
                                  <span>Total Taxes Withheld</span>
                                  <span>{formatNumber(totalTaxesCurrent)}</span>
                              </div>
-                             <div className="flex justify-between mt-2 font-bold">
+                             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '8px', fontWeight: 'bold' }}>
                                  <span>Net Amount</span>
                                  <span>{formatNumber(calculated.netPayCurrent)}</span>
                              </div>
@@ -182,33 +209,33 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
                     </div>
 
                     {/* Tax Info */}
-                    <div className="col-span-4 pl-4">
-                        <div className="bg-gray-100 p-1 mb-2 text-[10px] grid grid-cols-[2fr_1fr_1fr] font-bold border-t border-b border-gray-300">
+                    <div style={{ paddingLeft: '16px' }}>
+                        <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', fontWeight: 'bold', borderTop: '1px solid #d1d5db', borderBottom: '1px solid #d1d5db' }}>
                             <span>Tax Information</span>
-                            <span className="text-right">Tax</span>
-                            <span className="text-right">Y-T-D</span>
+                            <span style={{ textAlign: 'right' }}>Tax</span>
+                            <span style={{ textAlign: 'right' }}>Y-T-D</span>
                         </div>
-                        <div className="space-y-1 text-[10px] px-1 font-medium">
-                             <div className="grid grid-cols-[2fr_1fr_1fr]">
+                        <div style={{ fontSize: '10px', paddingLeft: '4px', paddingRight: '4px', fontWeight: '500' }}>
+                             <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', marginBottom: '4px' }}>
                                  <span>Federal Wages</span>
-                                 <span className="text-right">{formatNumber(taxableWagesCurrent)}</span>
-                                 <span className="text-right">{formatNumber(taxableWagesYTD)}</span>
+                                 <span style={{ textAlign: 'right' }}>{formatNumber(taxableWagesCurrent)}</span>
+                                 <span style={{ textAlign: 'right' }}>{formatNumber(taxableWagesYTD)}</span>
                              </div>
-                             <div className="grid grid-cols-[2fr_1fr_1fr]">
+                             <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', marginBottom: '4px' }}>
                                  <span>FICA Wages</span>
-                                 <span className="text-right">{formatNumber(calculated.grossPayCurrent)}</span>
-                                 <span className="text-right">{formatNumber(calculated.grossPayYTD)}</span>
+                                 <span style={{ textAlign: 'right' }}>{formatNumber(calculated.grossPayCurrent)}</span>
+                                 <span style={{ textAlign: 'right' }}>{formatNumber(calculated.grossPayYTD)}</span>
                              </div>
-                             <div className="grid grid-cols-[2fr_1fr_1fr]">
+                             <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', marginBottom: '4px' }}>
                                  <span>Medicare Wages</span>
-                                 <span className="text-right">{formatNumber(calculated.grossPayCurrent)}</span>
-                                 <span className="text-right">{formatNumber(calculated.grossPayYTD)}</span>
+                                 <span style={{ textAlign: 'right' }}>{formatNumber(calculated.grossPayCurrent)}</span>
+                                 <span style={{ textAlign: 'right' }}>{formatNumber(calculated.grossPayYTD)}</span>
                              </div>
                              {calculated.stateTaxRate > 0 && (
-                                <div className="grid grid-cols-[2fr_1fr_1fr]">
+                                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', marginBottom: '4px' }}>
                                     <span>State Wages</span>
-                                    <span className="text-right">{formatNumber(calculated.grossPayCurrent)}</span>
-                                    <span className="text-right">{formatNumber(calculated.grossPayYTD)}</span>
+                                    <span style={{ textAlign: 'right' }}>{formatNumber(calculated.grossPayCurrent)}</span>
+                                    <span style={{ textAlign: 'right' }}>{formatNumber(calculated.grossPayYTD)}</span>
                                 </div>
                              )}
                         </div>
@@ -216,17 +243,17 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
                 </div>
                 
                 {/* Summary Box - Dedicated & Distinct */}
-                <div className="bg-gray-100 border-t-2 border-b-2 border-gray-400 py-2 px-2 text-[10px] flex justify-between font-bold mt-2">
-                     <div className="w-1/2 flex justify-between pr-8">
-                        <span className="uppercase tracking-wide">Current Total Wages / Taxes</span>
-                        <div className="flex gap-4">
+                <div style={{ backgroundColor: '#f3f4f6', borderTop: '2px solid #9ca3af', borderBottom: '2px solid #9ca3af', paddingTop: '8px', paddingBottom: '8px', paddingLeft: '8px', paddingRight: '8px', fontSize: '10px', display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', marginTop: '8px' }}>
+                     <div style={{ width: '50%', display: 'flex', justifyContent: 'space-between', paddingRight: '32px' }}>
+                        <span style={{ textTransform: 'uppercase', letterSpacing: '0.025em' }}>Current Total Wages / Taxes</span>
+                        <div style={{ display: 'flex', gap: '16px' }}>
                              <span>{formatNumber(calculated.grossPayCurrent)}</span>
                              <span>{formatNumber(totalTaxesCurrent)}</span>
                         </div>
                      </div>
-                     <div className="w-1/2 flex justify-between pl-8 border-l-2 border-gray-300">
-                        <span className="uppercase tracking-wide">Net Pay This Period / Y-T-D</span>
-                        <div className="flex gap-4 text-black">
+                     <div style={{ width: '50%', display: 'flex', justifyContent: 'space-between', paddingLeft: '32px', borderLeft: '2px solid #d1d5db' }}>
+                        <span style={{ textTransform: 'uppercase', letterSpacing: '0.025em' }}>Net Pay This Period / Y-T-D</span>
+                        <div style={{ display: 'flex', gap: '16px', color: '#000' }}>
                              <span>{formatNumber(calculated.netPayCurrent)}</span>
                              <span>{formatNumber(calculated.netPayYTD)}</span>
                         </div>
@@ -234,21 +261,21 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
                 </div>
 
                 {/* Detailed Breakdown */}
-                <div className="grid grid-cols-12 gap-8 mt-2">
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px', marginTop: '8px' }}>
                     {/* Payments Column */}
-                    <div className="col-span-6 flex flex-col">
-                        <div className="bg-gray-100 p-1 mb-2 text-[10px] grid grid-cols-[2fr_1fr_1fr] font-bold">
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', fontWeight: 'bold' }}>
                             <span>Payments</span>
-                            <span className="text-right">Amount</span>
-                            <span className="text-right">Hours</span>
+                            <span style={{ textAlign: 'right' }}>Amount</span>
+                            <span style={{ textAlign: 'right' }}>Hours</span>
                         </div>
-                        <div className="px-1 text-[10px] font-medium space-y-1 mb-4">
+                        <div style={{ paddingLeft: '4px', paddingRight: '4px', fontSize: '10px', fontWeight: '500', marginBottom: '16px' }}>
                              {calculated.earnings.map((earn, i) => (
-                                <div key={i} className="flex justify-between">
+                                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
                                     <span>{earn.name}</span>
-                                    <div className="flex gap-8">
-                                        <span className="w-16 text-right">{formatNumber(earn.current)}</span>
-                                        <span className="w-12 text-right">{earn.hours.toFixed(2)}</span>
+                                    <div style={{ display: 'flex', gap: '32px' }}>
+                                        <span style={{ width: '64px', textAlign: 'right' }}>{formatNumber(earn.current)}</span>
+                                        <span style={{ width: '48px', textAlign: 'right' }}>{earn.hours.toFixed(2)}</span>
                                     </div>
                                 </div>
                              ))}
@@ -256,19 +283,19 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
 
                          {/* Employer Benefits Section */}
                         {calculated.employerBenefits.length > 0 && (
-                            <div className="mt-2">
-                                <div className="bg-gray-100 p-1 mb-2 text-[10px] grid grid-cols-[2fr_1fr_1fr] font-bold">
+                            <div style={{ marginTop: '8px' }}>
+                                <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', fontWeight: 'bold' }}>
                                     <span>Employer Paid Benefits (Info Only)</span>
-                                    <span className="text-right">Current</span>
-                                    <span className="text-right">YTD</span>
+                                    <span style={{ textAlign: 'right' }}>Current</span>
+                                    <span style={{ textAlign: 'right' }}>YTD</span>
                                 </div>
-                                <div className="px-1 text-[10px] font-medium space-y-1 text-gray-700 mb-4">
+                                <div style={{ paddingLeft: '4px', paddingRight: '4px', fontSize: '10px', fontWeight: '500', color: '#374151', marginBottom: '16px' }}>
                                     {calculated.employerBenefits.map((ben, i) => (
-                                        <div key={i} className="flex justify-between">
+                                        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
                                             <span>{ben.name}</span>
-                                            <div className="flex gap-8">
-                                                <span className="w-16 text-right">{formatNumber(ben.current)}</span>
-                                                <span className="w-16 text-right">{formatNumber(ben.ytd)}</span>
+                                            <div style={{ display: 'flex', gap: '32px' }}>
+                                                <span style={{ width: '64px', textAlign: 'right' }}>{formatNumber(ben.current)}</span>
+                                                <span style={{ width: '64px', textAlign: 'right' }}>{formatNumber(ben.ytd)}</span>
                                             </div>
                                         </div>
                                     ))}
@@ -277,24 +304,24 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
                         )}
 
                         {/* Time Off Section (Nestled in left column) */}
-                        <div className="mt-2">
-                            <div className="bg-gray-100 p-1 mb-2 text-[10px] grid grid-cols-[2fr_1fr_1fr_1fr] font-bold">
+                        <div style={{ marginTop: '8px' }}>
+                            <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', fontWeight: 'bold' }}>
                                 <span>Time Off</span>
-                                <span className="text-right">Used YTD</span>
-                                <span className="text-right">Balance</span>
+                                <span style={{ textAlign: 'right' }}>Used YTD</span>
+                                <span style={{ textAlign: 'right' }}>Balance</span>
                                 <span></span>
                             </div>
-                            <div className="px-1 text-[10px] font-medium space-y-1">
-                                <div className="grid grid-cols-[2fr_1fr_1fr_1fr]">
+                            <div style={{ paddingLeft: '4px', paddingRight: '4px', fontSize: '10px', fontWeight: '500' }}>
+                                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', marginBottom: '4px' }}>
                                     <span>Vacation</span>
-                                    <span className="text-right">{formatNumber(data.vacationUsed)}</span>
-                                    <span className="text-right">{formatNumber(data.vacationBalance)}</span>
+                                    <span style={{ textAlign: 'right' }}>{formatNumber(data.vacationUsed)}</span>
+                                    <span style={{ textAlign: 'right' }}>{formatNumber(data.vacationBalance)}</span>
                                     <span></span>
                                 </div>
-                                <div className="grid grid-cols-[2fr_1fr_1fr_1fr]">
+                                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', marginBottom: '4px' }}>
                                     <span>Sick / PTO</span>
-                                    <span className="text-right">{formatNumber(data.sickUsed)}</span>
-                                    <span className="text-right">{formatNumber(data.sickBalance)}</span>
+                                    <span style={{ textAlign: 'right' }}>{formatNumber(data.sickUsed)}</span>
+                                    <span style={{ textAlign: 'right' }}>{formatNumber(data.sickBalance)}</span>
                                     <span></span>
                                 </div>
                             </div>
@@ -302,61 +329,61 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
                     </div>
 
                     {/* Deductions Column */}
-                    <div className="col-span-6">
+                    <div>
                          {/* Header for Deductions */}
-                         <div className="bg-gray-100 p-1 mb-2 text-[10px] grid grid-cols-[2fr_1fr_1fr] font-bold">
+                         <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', fontWeight: 'bold' }}>
                             <span>Deductions / Benefits</span>
-                            <span className="text-right">Amount</span>
-                            <span className="text-right">YTD</span>
+                            <span style={{ textAlign: 'right' }}>Amount</span>
+                            <span style={{ textAlign: 'right' }}>YTD</span>
                         </div>
                         
-                         <div className="px-1 text-[10px] font-medium space-y-1">
+                         <div style={{ paddingLeft: '4px', paddingRight: '4px', fontSize: '10px', fontWeight: '500' }}>
                              {/* Pre-Tax */}
                              {preTaxDeductions.length > 0 ? preTaxDeductions.map((d, i) => (
-                                    <div key={i} className="flex justify-between">
+                                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
                                         <span>{d.name}</span>
-                                        <div className="flex gap-8">
-                                            <span className="w-16 text-right">{formatNumber(d.current)}</span>
-                                            <span className="w-16 text-right">{formatNumber(d.ytd)}</span>
+                                        <div style={{ display: 'flex', gap: '32px' }}>
+                                            <span style={{ width: '64px', textAlign: 'right' }}>{formatNumber(d.current)}</span>
+                                            <span style={{ width: '64px', textAlign: 'right' }}>{formatNumber(d.ytd)}</span>
                                         </div>
                                     </div>
-                             )) : <div className="text-gray-400 italic">None</div>}
+                             )) : <div style={{ color: '#9ca3af', fontStyle: 'italic' }}>None</div>}
 
                              {/* Post-Tax Header */}
-                             <div className="bg-gray-100 p-1 mb-2 mt-4 text-[10px] grid grid-cols-[2fr_1fr_1fr] font-bold">
+                             <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', marginTop: '16px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', fontWeight: 'bold' }}>
                                 <span>Post-Tax</span>
-                                <span className="text-right">Amount</span>
-                                <span className="text-right">YTD</span>
+                                <span style={{ textAlign: 'right' }}>Amount</span>
+                                <span style={{ textAlign: 'right' }}>YTD</span>
                              </div>
 
                              {/* Post-Tax Items */}
                              {postTaxDeductions.length > 0 ? postTaxDeductions.map((d, i) => (
-                                    <div key={i} className="flex justify-between">
+                                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
                                         <span>{d.name}</span>
-                                        <div className="flex gap-8">
-                                            <span className="w-16 text-right">{formatNumber(d.current)}</span>
-                                            <span className="w-16 text-right">{formatNumber(d.ytd)}</span>
+                                        <div style={{ display: 'flex', gap: '32px' }}>
+                                            <span style={{ width: '64px', textAlign: 'right' }}>{formatNumber(d.current)}</span>
+                                            <span style={{ width: '64px', textAlign: 'right' }}>{formatNumber(d.ytd)}</span>
                                         </div>
                                     </div>
-                             )) : <div className="text-gray-400 italic">None</div>}
+                             )) : <div style={{ color: '#9ca3af', fontStyle: 'italic' }}>None</div>}
                         </div>
                     </div>
                 </div>
             </div>
 
             {/* Footer */}
-            <div className="mt-auto">
-                 <div className="flex justify-between items-end mb-4">
+            <div style={{ marginTop: 'auto' }}>
+                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '16px' }}>
                      {/* Employer Info */}
                      <div>
-                         <div className="font-bold text-[11px] italic mb-1">{data.companyName}</div>
-                         <div className="text-[10px] italic uppercase">{data.companyAddress}</div>
+                         <div style={{ fontWeight: 'bold', fontSize: '11px', fontStyle: 'italic', marginBottom: '4px' }}>{data.companyName}</div>
+                         <div style={{ fontSize: '10px', fontStyle: 'italic', textTransform: 'uppercase' }}>{data.companyAddress}</div>
                      </div>
 
                      {/* Codes Legend - Bottom Right, 4 items per row */}
-                     <div className="text-[8px] italic text-gray-600 font-sans border border-blue-400/0 max-w-[50%]">
-                         <div className="font-bold mb-1">Codes Legend</div>
-                         <div className="grid grid-cols-4 gap-x-4 gap-y-0.5 whitespace-nowrap">
+                     <div style={{ fontSize: '8px', fontStyle: 'italic', color: '#4b5563', fontFamily: 'sans-serif', maxWidth: '50%' }}>
+                         <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>Codes Legend</div>
+                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', columnGap: '16px', rowGap: '2px', whiteSpace: 'nowrap' }}>
                             <div>A= Prior Period Adj</div>
                             <div>N= Ded Susp/No Mk-up</div>
                             <div>D= Ded Suspend/Mk-up</div>
@@ -368,7 +395,7 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
                      </div>
                  </div>
                  
-                 <div className="border-t border-dashed border-gray-300 pt-2 text-center text-[9px] text-gray-500 font-sans">
+                 <div style={{ borderTop: '1px dashed #d1d5db', paddingTop: '8px', textAlign: 'center', fontSize: '9px', color: '#6b7280', fontFamily: 'sans-serif' }}>
                     Generated for internal payroll records. Misuse or misrepresentation is prohibited.
                  </div>
             </div>
