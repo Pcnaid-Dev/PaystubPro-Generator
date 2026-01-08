@@ -28,21 +28,29 @@ export const downloadImage = async (elementId: string, filename: string) => {
 export const generateMarkdown = (data: PaystubData, calculated: CalculatedPaystub): string => {
   const formatCurrency = (num: number) => num.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
-  let md = `# PAY STATEMENT - ${data.companyName}\n\n`;
-  md += `**Employee:** ${data.employeeName}  \n`;
-  md += `**Address:** ${data.employeeAddress}  \n`;
-  md += `**ID:** ${data.employeeId} | **Pay Date:** ${calculated.payDate} | **Check #:** ${calculated.checkNumber}\n\n`;
+  let md = `# PAY STATEMENT\n\n`;
 
-  md += `## Earnings\n`;
-  md += `| Item | Rate | Hours | Current | YTD |\n`;
+  // General Info Table
+  md += `| Reference | Details |\n`;
+  md += `|---|---|\n`;
+  md += `| **Company** | ${data.companyName} |\n`;
+  md += `| **Employee** | ${data.employeeName} |\n`;
+  md += `| **Employee ID** | ${data.employeeId} |\n`;
+  md += `| **Pay Date** | ${calculated.payDate} |\n`;
+  md += `| **Check #** | ${calculated.checkNumber} |\n\n`;
+
+  // Earnings
+  md += `### Earnings\n`;
+  md += `| Description | Rate | Current Hours | Current Amount | YTD Amount |\n`;
   md += `|---|---:|---:|---:|---:|\n`;
   calculated.earnings.forEach(e => {
     md += `| ${e.name} | ${e.rate.toFixed(2)} | ${e.hours.toFixed(2)} | ${formatCurrency(e.current)} | ${formatCurrency(e.ytd)} |\n`;
   });
-  md += `| **Total** | | | **${formatCurrency(calculated.grossPayCurrent)}** | **${formatCurrency(calculated.grossPayYTD)}** |\n\n`;
+  md += `| **Total Earnings** | | | **${formatCurrency(calculated.grossPayCurrent)}** | **${formatCurrency(calculated.grossPayYTD)}** |\n\n`;
 
-  md += `## Taxes\n`;
-  md += `| Tax | Current | YTD |\n`;
+  // Taxes
+  md += `### Taxes\n`;
+  md += `| Tax Type | Current Amount | YTD Amount |\n`;
   md += `|---|---:|---:|\n`;
   md += `| Federal Tax | ${formatCurrency(calculated.fedTaxCurrent)} | ${formatCurrency(calculated.fedTaxYTD)} |\n`;
   md += `| Social Security | ${formatCurrency(calculated.ssTaxCurrent)} | ${formatCurrency(calculated.ssTaxYTD)} |\n`;
@@ -52,9 +60,10 @@ export const generateMarkdown = (data: PaystubData, calculated: CalculatedPaystu
   }
   md += `\n`;
 
+  // Deductions
   if (calculated.deductions.length > 0) {
-      md += `## Deductions\n`;
-      md += `| Item | Current | YTD |\n`;
+      md += `### Deductions\n`;
+      md += `| Description | Current Amount | YTD Amount |\n`;
       md += `|---|---:|---:|\n`;
       calculated.deductions.forEach(d => {
         md += `| ${d.name} | ${formatCurrency(d.current)} | ${formatCurrency(d.ytd)} |\n`;
@@ -62,19 +71,18 @@ export const generateMarkdown = (data: PaystubData, calculated: CalculatedPaystu
       md += `\n`;
   }
 
-  md += `## Summary\n`;
-  md += `| Category | Current | YTD |\n`;
-  md += `|---|---:|---:|\n`;
-  md += `| **Gross Pay** | **${formatCurrency(calculated.grossPayCurrent)}** | **${formatCurrency(calculated.grossPayYTD)}** |\n`;
-  
+  // Summary
   const totalTaxesCurrent = calculated.fedTaxCurrent + calculated.ssTaxCurrent + calculated.medicareTaxCurrent + calculated.stateTaxCurrent;
   const totalTaxesYTD = calculated.fedTaxYTD + calculated.ssTaxYTD + calculated.medicareTaxYTD + calculated.stateTaxYTD;
-  
-  md += `| Total Taxes | ${formatCurrency(totalTaxesCurrent)} | ${formatCurrency(totalTaxesYTD)} |\n`;
   
   const totalDedOnlyCurrent = calculated.deductions.reduce((a,b)=>a+b.current,0);
   const totalDedOnlyYTD = calculated.deductions.reduce((a,b)=>a+b.ytd,0);
 
+  md += `### Summary\n`;
+  md += `| Category | Current Amount | YTD Amount |\n`;
+  md += `|---|---:|---:|\n`;
+  md += `| **Gross Pay** | **${formatCurrency(calculated.grossPayCurrent)}** | **${formatCurrency(calculated.grossPayYTD)}** |\n`;
+  md += `| Total Taxes | ${formatCurrency(totalTaxesCurrent)} | ${formatCurrency(totalTaxesYTD)} |\n`;
   md += `| Total Deductions | ${formatCurrency(totalDedOnlyCurrent)} | ${formatCurrency(totalDedOnlyYTD)} |\n`;
   md += `| **Net Pay** | **${formatCurrency(calculated.netPayCurrent)}** | **${formatCurrency(calculated.netPayYTD)}** |\n`;
 

@@ -99,7 +99,7 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
 
             {/* Title */}
             <div className="flex justify-between items-end mb-8 border-b-2 border-black pb-1">
-                <h1 className="text-3xl font-medium text-black tracking-tight mb-[-2px]">Statement of Earnings and Deductions</h1>
+                <h1 className="text-3xl font-medium text-black tracking-tight">Statement of Earnings and Deductions</h1>
                 <div className="mb-1">
                     <span className="font-sans font-black italic text-2xl tracking-tighter text-gray-800" style={{ transform: 'skewX(-10deg)' }}>ADP</span>
                 </div>

@@ -14,7 +14,7 @@ export const generateCombinedPDF = async (
 ) => {
   // Use 'p' for portrait, 'mm' units, 'a4' format (standard international, though US Letter is 216x279)
   // html2canvas capture will determine the aspect ratio
-  const pdf = new jsPDF('p', 'mm', 'a4'); 
+  const pdf = new jsPDF('p', 'mm', 'letter'); 
   
   // Set PDF Metadata
   // Cast to any to allow setting 'producer' which might not be in the strict TypeScript definition but is a valid PDF Info field
@@ -43,7 +43,7 @@ export const generateCombinedPDF = async (
     setTempOverrideData(historicalStub);
 
     // 3. Wait for React to render (short delay)
-    await wait(100);
+    await wait(500);
 
     // 4. Capture
     // Using scale 2 or 3 ensures high quality text
