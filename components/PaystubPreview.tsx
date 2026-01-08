@@ -128,11 +128,9 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
 
             {/* Title */}
 
-                <h1 style={{ fontSize: '30px', fontWeight: '500', color: '#000', letterSpacing: '-0.025em', lineHeight: '1' }}>Statement of Earnings and Deductions</h1>
+                <h1 style={{ fontSize: '30px', fontWeight: '500', color: '#000', letterSpacing: '-0.025em', lineHeight: '1', paddingBottom: '6px', marginBottom: '8px' }}>Statement of Earnings and Deductions</h1>
             
-            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', marginBottom: '32px', borderBottom: '2px solid #000', paddingBottom: '4px' }}>
-                <div style={{ marginBottom: '4px' }}>
-                </div>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', marginBottom: '16px', borderBottom: '2px solid #000', paddingBottom: '4px' }}>
             </div>
 
             {/* Employee/Employer Info */}
@@ -141,7 +139,7 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
                      <div style={{ fontSize: '11px', marginBottom: '24px' }}>Employee Id: <span style={{ fontWeight: 'bold' }}>{data.employeeId}</span></div>
                      
                      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '4px', fontSize: '10px', borderBottom: '1px solid #000', paddingBottom: '4px', marginBottom: '4px', fontWeight: 'bold' }}>
-                             <div style={{ whiteSpace: 'nowrap' }}>Marital Status/Exemptions</div>
+                             <div style={{ whiteSpace: 'nowrap' }}>Marital Status / Exemptions</div>
                              <div style={{ textAlign: 'center' }}></div>
                              <div style={{ textAlign: 'center' }}></div>
                              <div style={{ textAlign: 'center' }}>Amounts</div>
@@ -383,7 +381,7 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
 
                      {/* Codes Legend - Bottom Right, 4 items per row */}
                      <div style={{ fontSize: '8px', fontStyle: 'italic', color: '#4b5563', fontFamily: 'sans-serif', maxWidth: '50%' }}>
-                         <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>Codes Legend</div>
+                         <div style={{ fontWeight: 'bold', marginBottom: '4px',  }}>Codes Legend</div>
                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', columnGap: '16px', rowGap: '2px', whiteSpace: 'nowrap' }}>
                             <div>A= Prior Period Adj</div>
                             <div>N= Ded Susp/No Mk-up</div>
