@@ -127,8 +127,10 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
             </div>
 
             {/* Title */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px', borderBottom: '2px solid #000', paddingBottom: '4px' }}>
+
                 <h1 style={{ fontSize: '30px', fontWeight: '500', color: '#000', letterSpacing: '-0.025em', lineHeight: '1' }}>Statement of Earnings and Deductions</h1>
+            
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px', borderBottom: '2px solid #000', paddingBottom: '4px' }}>
                 <div style={{ marginBottom: '4px' }}>
                     <span style={{ fontFamily: 'sans-serif', fontWeight: '900', fontStyle: 'italic', fontSize: '24px', letterSpacing: '-0.05em', color: '#1f2937', transform: 'skewX(-10deg)', display: 'inline-block' }}>ADP</span>
                 </div>
