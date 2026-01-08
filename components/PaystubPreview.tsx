@@ -128,7 +128,7 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
 
             {/* Title */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px', borderBottom: '2px solid #000', paddingBottom: '4px' }}>
-                <h1 style={{ fontSize: '30px', fontWeight: '500', color: '#000', letterSpacing: '-0.025em', marginBottom: '-2px', lineHeight: '1' }}>Statement of Earnings and Deductions</h1>
+                <h1 style={{ fontSize: '30px', fontWeight: '500', color: '#000', letterSpacing: '-0.025em', lineHeight: '1' }}>Statement of Earnings and Deductions</h1>
                 <div style={{ marginBottom: '4px' }}>
                     <span style={{ fontFamily: 'sans-serif', fontWeight: '900', fontStyle: 'italic', fontSize: '24px', letterSpacing: '-0.05em', color: '#1f2937', transform: 'skewX(-10deg)', display: 'inline-block' }}>ADP</span>
                 </div>
@@ -178,7 +178,7 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
                 <div style={{ display: 'grid', gridTemplateColumns: '8fr 4fr', gap: '16px' }}>
                     {/* Earnings */}
                     <div>
-                         <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', borderTop: '1px solid #d1d5db', borderBottom: '1px solid #d1d5db' }}>
+                         <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', alignItems: 'center',borderTop: '1px solid #d1d5db', borderBottom: '1px solid #d1d5db' }}>
                              <span>Payments This Period</span>
                              <div style={{ display: 'flex', gap: '16px' }}>
                                  <span style={{ fontWeight: 'normal', fontSize: '9px', marginRight: '8px' }}>Reg. Rate {calculated.rate.toFixed(2)}</span>
@@ -210,7 +210,7 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
 
                     {/* Tax Info */}
                     <div style={{ paddingLeft: '16px' }}>
-                        <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', fontWeight: 'bold', borderTop: '1px solid #d1d5db', borderBottom: '1px solid #d1d5db' }}>
+                        <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', alignItems: 'center',fontWeight: 'bold', borderTop: '1px solid #d1d5db', borderBottom: '1px solid #d1d5db' }}>
                             <span>Tax Information</span>
                             <span style={{ textAlign: 'right' }}>Tax</span>
                             <span style={{ textAlign: 'right' }}>Y-T-D</span>
@@ -243,7 +243,7 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
                 </div>
                 
                 {/* Summary Box - Dedicated & Distinct */}
-                <div style={{ backgroundColor: '#f3f4f6', borderTop: '2px solid #9ca3af', borderBottom: '2px solid #9ca3af', paddingTop: '8px', paddingBottom: '8px', paddingLeft: '8px', paddingRight: '8px', fontSize: '10px', display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', marginTop: '8px' }}>
+                <div style={{ backgroundColor: '#f3f4f6', borderTop: '2px solid #9ca3af', borderBottom: '2px solid #9ca3af', paddingTop: '8px', paddingBottom: '8px', paddingLeft: '8px', paddingRight: '8px', fontSize: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center',fontWeight: 'bold', marginTop: '8px' }}>
                      <div style={{ width: '50%', display: 'flex', justifyContent: 'space-between', paddingRight: '32px' }}>
                         <span style={{ textTransform: 'uppercase', letterSpacing: '0.025em' }}>Current Total Wages / Taxes</span>
                         <div style={{ display: 'flex', gap: '16px' }}>
@@ -264,7 +264,7 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px', marginTop: '8px' }}>
                     {/* Payments Column */}
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', fontWeight: 'bold' }}>
+                        <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', alignItems: 'center',fontWeight: 'bold' }}>
                             <span>Payments</span>
                             <span style={{ textAlign: 'right' }}>Amount</span>
                             <span style={{ textAlign: 'right' }}>Hours</span>
@@ -284,7 +284,7 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
                          {/* Employer Benefits Section */}
                         {calculated.employerBenefits.length > 0 && (
                             <div style={{ marginTop: '8px' }}>
-                                <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', fontWeight: 'bold' }}>
+                                <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', alignItems: 'center',fontWeight: 'bold' }}>
                                     <span>Employer Paid Benefits (Info Only)</span>
                                     <span style={{ textAlign: 'right' }}>Current</span>
                                     <span style={{ textAlign: 'right' }}>YTD</span>
@@ -305,7 +305,7 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
 
                         {/* Time Off Section (Nestled in left column) */}
                         <div style={{ marginTop: '8px' }}>
-                            <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', fontWeight: 'bold' }}>
+                            <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', alignItems: 'center',fontWeight: 'bold' }}>
                                 <span>Time Off</span>
                                 <span style={{ textAlign: 'right' }}>Used YTD</span>
                                 <span style={{ textAlign: 'right' }}>Balance</span>
@@ -331,7 +331,7 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
                     {/* Deductions Column */}
                     <div>
                          {/* Header for Deductions */}
-                         <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', fontWeight: 'bold' }}>
+                         <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', alignItems: 'center',fontWeight: 'bold' }}>
                             <span>Deductions / Benefits</span>
                             <span style={{ textAlign: 'right' }}>Amount</span>
                             <span style={{ textAlign: 'right' }}>YTD</span>
@@ -350,7 +350,7 @@ const PaystubPreview: React.FC<Props> = ({ data, calculated, id }) => {
                              )) : <div style={{ color: '#9ca3af', fontStyle: 'italic' }}>None</div>}
 
                              {/* Post-Tax Header */}
-                             <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', marginTop: '16px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', fontWeight: 'bold' }}>
+                             <div style={{ backgroundColor: '#f3f4f6', padding: '4px', marginBottom: '8px', marginTop: '16px', fontSize: '10px', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', alignItems: 'center',fontWeight: 'bold' }}>
                                 <span>Post-Tax</span>
                                 <span style={{ textAlign: 'right' }}>Amount</span>
                                 <span style={{ textAlign: 'right' }}>YTD</span>
