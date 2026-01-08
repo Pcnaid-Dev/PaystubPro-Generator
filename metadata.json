@@ -1,0 +1,5 @@
+{
+  "name": "Paystub Generator Pro",
+  "description": "A professional paystub generator that calculates taxes, YTD earnings, and generates PDF paystubs based on user inputs and schedules.",
+  "requestFramePermissions": []
+}
