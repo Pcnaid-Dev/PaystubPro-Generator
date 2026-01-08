@@ -134,10 +134,6 @@ button:disabled {
 
 .hidden { display: none; }
 
-@media (min-width: 640px) {
-  .sm\:inline { display: inline; }
-}
-
 /* Scrollbar styles */
 ::-webkit-scrollbar {
   width: 8px;
