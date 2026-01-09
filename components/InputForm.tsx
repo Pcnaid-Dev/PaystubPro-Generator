@@ -58,15 +58,48 @@ const InputForm: React.FC<Props> = ({ data, onChange, calculated }) => {
               className="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 border p-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Company Address</label>
-            <input
-              type="text"
-              value={data.companyAddress}
-              onChange={(e) => handleChange('companyAddress', e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 border p-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-              placeholder="123 Business Rd, City, State, Zip"
-            />
+          
+          <div className="grid grid-cols-6 gap-2">
+             <div className="col-span-6">
+                <label className="block text-sm font-medium text-gray-700">Street Address</label>
+                <input
+                  type="text"
+                  value={data.companyAddressStreet}
+                  onChange={(e) => handleChange('companyAddressStreet', e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 border p-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                  placeholder="123 Business Rd"
+                />
+             </div>
+             <div className="col-span-3">
+                <label className="block text-sm font-medium text-gray-700">City</label>
+                <input
+                  type="text"
+                  value={data.companyAddressCity}
+                  onChange={(e) => handleChange('companyAddressCity', e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 border p-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                  placeholder="City"
+                />
+             </div>
+             <div className="col-span-1">
+                <label className="block text-sm font-medium text-gray-700">State</label>
+                <input
+                  type="text"
+                  value={data.companyAddressState}
+                  onChange={(e) => handleChange('companyAddressState', e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 border p-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                  placeholder="ST"
+                />
+             </div>
+             <div className="col-span-2">
+                <label className="block text-sm font-medium text-gray-700">Zip</label>
+                <input
+                  type="text"
+                  value={data.companyAddressZip}
+                  onChange={(e) => handleChange('companyAddressZip', e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 border p-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                  placeholder="Zip"
+                />
+             </div>
           </div>
         </div>
       </section>
@@ -86,15 +119,50 @@ const InputForm: React.FC<Props> = ({ data, onChange, calculated }) => {
               className="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 border p-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             />
           </div>
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700">Employee Address</label>
-            <input
-              type="text"
-              value={data.employeeAddress}
-              onChange={(e) => handleChange('employeeAddress', e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 border p-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-            />
+          
+           <div className="md:col-span-2 grid grid-cols-6 gap-2">
+             <div className="col-span-6">
+                <label className="block text-sm font-medium text-gray-700">Street Address</label>
+                <input
+                  type="text"
+                  value={data.employeeAddressStreet}
+                  onChange={(e) => handleChange('employeeAddressStreet', e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 border p-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                  placeholder="42 Wallaby Way"
+                />
+             </div>
+             <div className="col-span-3">
+                <label className="block text-sm font-medium text-gray-700">City</label>
+                <input
+                  type="text"
+                  value={data.employeeAddressCity}
+                  onChange={(e) => handleChange('employeeAddressCity', e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 border p-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                  placeholder="City"
+                />
+             </div>
+             <div className="col-span-1">
+                <label className="block text-sm font-medium text-gray-700">State</label>
+                <input
+                  type="text"
+                  value={data.employeeAddressState}
+                  onChange={(e) => handleChange('employeeAddressState', e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 border p-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                  placeholder="ST"
+                />
+             </div>
+             <div className="col-span-2">
+                <label className="block text-sm font-medium text-gray-700">Zip</label>
+                <input
+                  type="text"
+                  value={data.employeeAddressZip}
+                  onChange={(e) => handleChange('employeeAddressZip', e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 border p-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                  placeholder="Zip"
+                />
+             </div>
           </div>
+
           <div>
             <label className="block text-sm font-medium text-gray-700">Employee ID</label>
             <input

@@ -10,9 +10,15 @@ import { format } from 'date-fns';
 
 const INITIAL_DATA: PaystubData = {
   companyName: 'Tech Solutions Inc.',
-  companyAddress: '101 Silicon Valley Blvd, San Jose, CA 94000',
+  companyAddressStreet: '101 Silicon Valley Blvd',
+  companyAddressCity: 'San Jose',
+  companyAddressState: 'CA',
+  companyAddressZip: '94000',
   employeeName: 'Jane Smith',
-  employeeAddress: '42 Wallaby Way, Sydney, TX 76000',
+  employeeAddressStreet: '42 Wallaby Way',
+  employeeAddressCity: 'Sydney',
+  employeeAddressState: 'TX',
+  employeeAddressZip: '76000',
   employeeId: 'EMP-9921',
   ssnLast4: '1234',
   accountLast4: '9876',

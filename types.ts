@@ -1,3 +1,4 @@
+
 export enum PayFrequency {
   Weekly = 'Weekly',
   BiWeekly = 'Bi-Weekly',
@@ -13,11 +14,17 @@ export enum EmploymentType {
 export interface PaystubData {
   // Employer
   companyName: string;
-  companyAddress: string;
+  companyAddressStreet: string;
+  companyAddressCity: string;
+  companyAddressState: string;
+  companyAddressZip: string;
 
   // Employee
   employeeName: string;
-  employeeAddress: string;
+  employeeAddressStreet: string;
+  employeeAddressCity: string;
+  employeeAddressState: string;
+  employeeAddressZip: string;
   employeeId: string;
   ssnLast4: string;
   accountLast4: string; // Direct deposit
